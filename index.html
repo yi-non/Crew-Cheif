@@ -24,6 +24,7 @@ label{display:flex;gap:8px;align-items:center;margin-top:12px;font-size:15px;col
 <label><input id="rm" type="checkbox" checked> הישאר מחובר במכשיר זה</label>
 <button id="b">כניסה</button><div id="e" role="alert"></div><div id="ok" role="status" style="margin-top:8px;font-size:14px;color:#7fbf6a"></div></form>
 <script>
+(()=>{
 if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(()=>{});
  navigator.serviceWorker.ready.then(()=>{try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
   const o=document.querySelector("#ok");if(o)o.textContent="מוריד את האפליקציה למכשיר… נא להישאר מחובר לרשת";
@@ -45,4 +46,5 @@ $("#f").onsubmit=async e=>{e.preventDefault();const b=$("#b"),m=$("#e");b.disabl
   if($("#rm").checked){try{localStorage.setItem(K,btoa(String.fromCharCode(...new Uint8Array(await crypto.subtle.exportKey("raw",key)))))}catch(x){}}
   go(html)}
  catch(x){m.textContent="סיסמה שגויה.";b.disabled=false}};
+})();
 </script></body></html>
